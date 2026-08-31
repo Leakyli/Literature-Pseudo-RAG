@@ -1,0 +1,19 @@
+# Local runtime data
+n8n_data/
+vault/
+data/
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Env / secrets
+.env
+
+# Runtime artifacts & trackers
+*.log
+processed_dois.txt
+
+# OS
+.DS_Store

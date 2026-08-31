@@ -1,0 +1,23 @@
+services:
+  pdf_service:
+    build:
+      context: ./pdf_service
+    container_name: pdf_service
+    restart: always
+    ports:
+      - "5001:5001"
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n_automation
+    restart: always
+    depends_on:
+      - pdf_service
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+      - ./vault:/workspace
+    environment:
+      - N8N_SECURE_COOKIE=false
+      - N8N_RESTRICT_FILE_ACCESS_TO=/workspace
